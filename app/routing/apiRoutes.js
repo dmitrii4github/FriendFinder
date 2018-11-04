@@ -47,6 +47,10 @@ app.post("/api/friends", function(req, res) {
 
   console.log(smallestDiff);
   console.log(closestFriend);
+  console.log(f.friends[closestFriend].name);
+
+  res.send(f.friends[closestFriend]);
+
 
 
 });
