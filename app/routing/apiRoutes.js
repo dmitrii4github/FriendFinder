@@ -21,6 +21,36 @@ app.get("/api/friends", function(req, res) {
   return res.json(f.friends);
 });
 
+app.post("/api/friends", function(req, res) {
+  // console.log(req)
+  // req.body hosts is equal to the JSON post sent from the user
+  // This works because of our body parsing middleware
+
+  console.log(req.body.scores);
+
+  var closestFriend = 0;
+  var smallestDiff = 100000000000;
+
+  for (var i = 0; i<f.friends.length; i++) {
+    console.log(f.friends[i].scores);
+    var diff = 0;
+    for (j=0; j<f.friends[i].scores.length; j++) {
+      var d = Math.abs(req.body.scores[j] - f.friends[i].scores[j]);
+      diff += d;
+    }
+    console.log(diff);
+    if (diff <= smallestDiff) {
+      smallestDiff = diff;
+      closestFriend = i;
+    }
+  }
+
+  console.log(smallestDiff);
+  console.log(closestFriend);
+
+
+});
+
 
 module.exports = {
   app: app
