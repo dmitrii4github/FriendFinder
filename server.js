@@ -4,7 +4,8 @@
 var a = require("./app/routing/htmlRoutes.js");
 var express = require("express");
 
-var PORT = 3000;
+const host = '0.0.0.0';
+var PORT = process.env.PORT || 3000;
 
 // express.urlencoded() provides middleware for automatically parsing forms with the content-type application/x-www-urlencoded and storing the result as a dictionary (object) in req.body
 // The "extended" syntax allows for rich objects and arrays to be encoded into the URL-encoded format, allowing for a JSON-like experience with URL-encoded.
@@ -20,7 +21,7 @@ a.a.app.use(express.json());
   // Starts the server to begin listening
 // =============================================================
 // Bind our application to the TCP PORT to start listening
-a.a.app.listen(PORT, function() {
+a.a.app.listen(PORT, host, function() {
     console.log("App listening on PORT " + PORT);
   });
 
